@@ -1,4 +1,13 @@
 {% set name = "python-levenshtein" %}
+{% set debug = os.environ.get('PY_INTERP_DEBUG', '') %}
+{% if debug != '' %}
+  {% set debug = "_dbg" %}
+{% endif %}
+{% if debug != '' %}
+  {% set variant = "cpython_dbg" %}
+{% else %}
+  {% set variant = "cpython" %}
+{% endif %}
 {% set camelName = "python-Levenshtein" %}
 {% set version = "0.12.0" %}
 {% set hash_type = "sha256" %}
@@ -14,7 +23,8 @@ source:
   {{ hash_type }}: {{ hash_val }}
 
 build:
-  number: 1001
+  number: 1002
+  string: py{{ ''.join(python.split('.')[0:2]) }}h{{ PKG_HASH }}_{{ PKG_BUILDNUM }}{{ debug }}
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
