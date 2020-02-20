@@ -31,10 +31,10 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - python
+    - python {{python}}* *{{variant}}
     - pip
   run:
-    - python
+    - python {{python}}* *{{variant}}
 
 test:
   imports:
