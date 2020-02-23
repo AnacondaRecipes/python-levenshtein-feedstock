@@ -32,7 +32,7 @@ requirements:
     - {{ compiler('c') }}
   host:
     - python {{python}}* *{{variant}}
-    - pip
+    - pip {{python}}* *{{variant}}
   run:
     - python {{python}}* *{{variant}}
 
