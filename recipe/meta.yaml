@@ -1,7 +1,7 @@
 {% set name = "python-levenshtein" %}
 {% set camelName = "python-Levenshtein" %}
-{% set version = "0.12.2" %}
-{% set hash_val = "dc2395fbd148a1ab31090dd113c366695934b9e85fe5a4b2a032745efd0346f6" %}
+{% set version = "0.27.1" %}
+{% set hash_val = "3a5314a011016d373d309a68e875fd029caaa692ad3f32e78319299648045f11" %}
 
 package:
   name: {{ name }}
@@ -9,7 +9,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ camelName }}-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
   sha256: {{ hash_val }}
 
 build:
