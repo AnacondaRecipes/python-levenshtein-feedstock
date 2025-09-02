@@ -10,8 +10,6 @@ package:
   version: {{ version }}
 
 source:
-  # This is a dummy package which only contains metadata (license files, etc.)
-  # and imports 'levenshtein' package of matching version. We'll do the same here.
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
   sha256: 3a5314a011016d373d309a68e875fd029caaa692ad3f32e78319299648045f11
 
@@ -26,7 +24,6 @@ requirements:
     - setuptools
   run:
     - python
-    # We only add the renamed package 'levenshtein' as dependency, where the actual packaging is done
     - levenshtein =={{ version }}
 
 test:
@@ -47,9 +44,13 @@ about:
   license_file: COPYING
   summary: The Levenshtein Python C extension module contains functions for fast computation of Levenshtein distance and string similarity
   description: |
-    Package has been renamed to 'levenshtein'. This package only provides compatibility for
-    using the previous name.
-    Prefer using the renamed package 'levenshtein' directly instead where possible.
+    The Levenshtein Python C extension module contains functions for fast computation of:
+      Levenshtein (edit) distance, and edit operations
+      string similarity
+      approximate median strings, and generally string averaging
+      string sequence and set similarity
+      Warining: The package was renamed to 'levenshtein'. 
+      The 'python-levenshtein' package will continue to be updated alongside the new package.
   doc_url: https://rapidfuzz.github.io/Levenshtein
   dev_url: https://github.com/rapidfuzz/python-Levenshtein
 
