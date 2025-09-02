@@ -32,6 +32,9 @@ requirements:
 test:
   imports:
     - Levenshtein
+  requires:
+    - python
+    - pip
   commands:
     - pip check
     # Trivial test to ensure compiled C code is indeed available
