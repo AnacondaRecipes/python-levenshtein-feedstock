@@ -1,28 +1,33 @@
 {% set name = "python-levenshtein" %}
 {% set version = "0.27.1" %}
 
+# Note: The project 'python-levenshtein' has been renamed to 'levenshtein'.
+# Since both names are maintained, this has been converted to meta-package
+# which only provides compatibility for using the old name.
+
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
+  # This is a dummy package which only contains metadata (license files, etc.)
+  # and imports 'levenshtein' package of matching version. We'll do the same here.
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
   sha256: 3a5314a011016d373d309a68e875fd029caaa692ad3f32e78319299648045f11
 
 build:
   skip: true  # [py<39]
   number: 0
-  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
-  build:
-    - {{ compiler('c') }}
-    - {{ stdlib('c') }}
   host:
     - python
     - pip
+    - setuptools
   run:
     - python
+    # We only add the renamed package 'levenshtein' as dependency, where the actual packaging is done
+    - levenshtein =={{ version }}
 
 test:
   imports:
@@ -32,20 +37,16 @@ test:
     - python -c "import sys; from Levenshtein import distance as d; assert 3==d('Good', 'Bad')"
 
 about:
-  home: http://github.com/ztane/python-Levenshtein
+  home: https://github.com/rapidfuzz/python-Levenshtein
   license: GPL-2.0-or-later
   license_family: GPL
   license_file: COPYING
   summary: Python extension for computing string edit distances and similarities.
   description: |
-    A Python extension written in C for fast computation of: Levenshtein (edit)
-    distance and edit sequence manipulation; string similarity; approximate median
-    strings, and generally string averaging; string sequence and set similarity.
-    Levenshtein has a some overlap with difflib (SequenceMatcher). It supports
-    only strings, not arbitrary sequence types, but on the other hand it's much
-    faster.
-  doc_url: https://rawgit.com/ztane/python-Levenshtein/master/docs/Levenshtein.html
-  dev_url: http://github.com/ztane/python-Levenshtein
+    Package has been renamed to 'levenshtein', This package only provides compatibility for old name.
+    Prefer using the renamed package 'levenshtein' directly instead where possible.
+  doc_url: https://github.com/rapidfuzz/python-Levenshtein
+  dev_url: https://github.com/rapidfuzz/python-Levenshtein
 
 extra:
   recipe-maintainers:
