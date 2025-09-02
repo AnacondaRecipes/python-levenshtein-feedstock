@@ -33,6 +33,7 @@ test:
   imports:
     - Levenshtein
   commands:
+    - pip check
     # Trivial test to ensure compiled C code is indeed available
     - python -c "import sys; from Levenshtein import distance as d; assert 3==d('Good', 'Bad')"
 
